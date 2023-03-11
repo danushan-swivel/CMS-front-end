@@ -1,0 +1,26 @@
+.nav-class {
+    display: flex;
+    float: left;
+    width: 20%;
+    margin-right: 0;
+}
+
+.sign-out-class {
+    float: right;
+    display: flex;
+    color: #7b1919;
+
+}
+
+.brand {
+    color: rgb(159, 172, 188);
+}
+
+.nav-item {
+    padding: 5px 20px;
+    color: #fff;
+}
+
+.active {
+    font-size: large;
+}

@@ -1,39 +1,36 @@
 .details-view {
     margin: 0;
     display: block;
+    width: 100%;
 }
 
 .list-view-container {
-    max-width: 90%;
+    width: 100%;
     margin: 0 auto;
     padding: 0;
-    display: grid;
-    overflow-x: visible;
+    display: contents;
+    opacity: inherit;
+
 }
 
 .list-view-row {
     border-bottom-style: solid;
     border-bottom-width: 0.5px;
+    width: auto;
+    display: flexbox;
+    flex-wrap: wrap;
 }
 
 .list-view-col {
     min-height: 40px;
     max-height: auto;
     text-align: center;
+    overflow: hidden;
     padding: 5px;
     margin-bottom: 15px;
     transform: translateY(20%);
 }
 
-.list-view-items {
-    list-style-type: none;
-    width: 90%;
-}
-
-.list-view-items li {
-    display: inline-block;
-    padding: 5px 10px;
-    /* max-width: auto; */
-    min-width: 100px;
-    align-items: center;
+.student-btn-view {
+    width: 80px;
 }

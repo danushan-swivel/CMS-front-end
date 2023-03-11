@@ -1,22 +1,29 @@
 import './App.css';
-import Login from './Components/Login';
-import StudentsDetails from './Components/StudentsDetails';
+import Login from './pages/Login';
+import StudentsView from './pages/StudentsView';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import Layout from './components/layout/Layout';
+import NewStudent from './pages/NewStudent';
 
 
 function App() {
   return (
-    <div className="App">
-      <div>
-        <h1>Login Page</h1>
-        <Login />
-      </div>
-
-      <div>
-        <h1>Student Details</h1>
-        <StudentsDetails />
-      </div>
-
-    </div>
+    <Layout>
+      <Switch>
+        <Route path="/login" >
+          <Login />
+        </Route>
+        <Route path="/" exact>
+          <Redirect to='/login' />
+        </Route>
+        <Route path="/students" exact>
+          <StudentsView />
+        </Route>
+        <Route path="/student/add" exact>
+          <NewStudent />
+        </Route>
+      </Switch>
+    </Layout>
   );
 }
 
