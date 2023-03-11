@@ -19,14 +19,6 @@ const StudentRow = (props) => {
         if ((showDetail) ? setShowDetail(false) : setShowDetail(true));
     }
 
-    // function checkExisting() {
-
-    // }
-
-    // useEffect(() => {
-
-    // }, [showDetail]);
-
     return (
         <Fragment>
             <Row className=''>
