@@ -1,37 +1,67 @@
-import { Button } from "bootstrap-4-react/lib/components";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { Row, Col } from "react-bootstrap";
-import { NavLink, Route } from "react-router-dom";
-import UpdateStudent from "../../pages/UpdateStudent";
-import StudentDetailView from "./StudentDetailView";
-// import edit from '.';
+import { useNavigate } from "react-router-dom";
+import DeleteRecord from "../common/DeleteRecord";
+import StudentPayment from "./StudentPayment";
 import './StudentRow.css';
-const StudentRow = (props) => {
-    const [showDetail, setShowDetail] = useState(false);
-    // console.log('Before click button: ' + props.id);
+const StudentRow = ({ props }) => {
+    const [payClicked, setPayClicked] = useState(false);
+    const [deleteClicked, setDeleteClicked] = useState(false);
+    const navigate = useNavigate();
 
     function deleteHandler() {
         console.log('Delete buttion clicked' + props.id);
+        (deleteClicked) ? setDeleteClicked(false) : setDeleteClicked(true);
+    }
+
+    function updateHandler() {
+        navigate('/students/update/' + props.id, {
+            state: {
+                id: props.id,
+                firstName: props.firstName,
+                lastName: props.lastName,
+                gender: props.gender,
+                address: props.address,
+                age: props.age,
+                location: props.locationId,
+                studentStatus: props.studentStatus,
+                phoneNumber: props.phoneNumber,
+                joinedDate: props.joinedDate
+            }
+        });
     }
 
     function viewHandler() {
-        console.log('Delete buttion clicked' + props.id);
-        if ((showDetail) ? setShowDetail(false) : setShowDetail(true));
+        console.log('View buttion clicked' + props.id);
+        navigate('/students/view/' + props.id, {
+            state: {
+                id: props.id,
+                firstName: props.firstName,
+                lastName: props.lastName,
+                gender: props.gender,
+                address: props.address,
+                age: props.age,
+                location: props.locationId,
+                studentStatus: props.studentStatus,
+                phoneNumber: props.phoneNumber,
+                joinedDate: props.joinedDate
+            }
+        });
     }
 
-    // function checkExisting() {
+    const noClick = () => {
+        setDeleteClicked(false);
+    }
 
-    // }
-
-    // useEffect(() => {
-
-    // }, [showDetail]);
-
+    function payHandler() {
+        console.log('Pay buttion clicked' + props.id);
+        (payClicked) ? setPayClicked(false) : setPayClicked(true);
+    }
     return (
         <Fragment>
             <Row className=''>
                 <Col className='list-view-col' md={1} >{props.firstName}</Col>
-                <Col className='list-view-col' md={2} >{props.lastName}</Col>
+                <Col className='list-view-col' md={1} >{props.lastName}</Col>
                 <Col className='list-view-col' md={1} >{props.address}</Col>
                 <Col className='list-view-col' md={1} >{props.gender}</Col>
                 <Col className='list-view-col' md={1} >{props.age}</Col>
@@ -39,19 +69,16 @@ const StudentRow = (props) => {
                 <Col className='list-view-col' md={1} >{props.studentStatus}</Col>
                 <Col className='list-view-col' md={1} >{props.locationId}</Col>
                 <Col className='list-view-col' md={1} >{props.joinedDate}</Col>
+                <Col className='list-view-col student-btn-view' md={0.5} ><button onClick={payHandler}>Pay</button></Col>
                 <Col className='list-view-col student-btn-view' md={0.5} ><button onClick={viewHandler}>View</button></Col>
-                <Route path='/students/update:studentId' exact>
-                    <UpdateStudent functionName='Update' />
-                </Route>
-                <Col className='list-view-col' md={0.5} ><NavLink to={`/students/update:${props.id}`} >update</NavLink></Col>
-                {/* <Col className='list-view-col' md={0.5} ><NavLink to={`/students/delete:${props.studentId}`} >Dalete</NavLink></Col> */}
-                <Col className='list-view-col' md={0.5} ><button onClick={deleteHandler}>Delete</button></Col>
-            </Row >
-            {showDetail ? (<Row >
-                <StudentDetailView props={props.id} />
-            </Row>) : null}
+                <Col className='list-view-col student-btn-view' md={0.5} ><button onClick={updateHandler}>Update</button></Col>
+                <Col className='list-view-col student-btn-view' md={0.5} ><button onClick={deleteHandler}>Delete</button></Col>
 
-        </Fragment>
+            </Row >
+
+            {(payClicked) ? <Row><StudentPayment id={props.id} /></Row> : null}
+            {(deleteClicked) ? <Row><DeleteRecord noClick={noClick} id={props.id} service={'student'} /></Row> : null}
+        </Fragment >
     )
 }
 

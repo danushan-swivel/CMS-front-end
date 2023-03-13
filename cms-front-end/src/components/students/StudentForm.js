@@ -58,8 +58,8 @@ const StudentFormFields = (props) => {
                     <Col className='add-student-field-col' md={6} sm={12}>
                         <Form.Control as={'select'} ref={genderRef} required>
                             <option value='' >Gender</option>
-                            <option value='male' >Male</option>
-                            <option value='female' >Female</option>
+                            <option value='Male' >Male</option>
+                            <option value='Female' >Female</option>
                         </Form.Control>
                     </Col>
                     <Col className='add-student-field-col second-column' md={6} sm={12}>

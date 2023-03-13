@@ -2,11 +2,11 @@ import './StudentsView.css';
 import React, { useState, useEffect, } from "react";
 import { getAllStudentDetails } from '../lib/api';
 import StudentDetails from '../components/students/StudentDetails';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const StudentsView = () => {
     const [student, setStudent] = useState([]);
     const [statusCode, setStatusCode] = useState(0);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     async function loadStudents() {
         const response = getAllStudentDetails();
@@ -20,18 +20,11 @@ const StudentsView = () => {
     console.log(statusCode);
 
     function addStudentHandler() {
-        history.push('/student/add');
+        navigate('/student/add');
     }
 
-    function resetToken() {
-        if (statusCode === 6000) {
-            localStorage.setItem('access_token', '')
-            history.replace('/login')
-        }
-    }
     useEffect(() => {
         loadStudents();
-        resetToken();
     }, [statusCode]);
     return (
         <div className="details-view">

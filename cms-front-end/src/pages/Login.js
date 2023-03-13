@@ -3,11 +3,11 @@ import { Container } from 'bootstrap-4-react';
 import './Login.css';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { encode as base64_encode } from 'base-64';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { adminLogin } from '../lib/api';
 
 const Login = () => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const [status, setStatus] = useState(0);
 
     const nameRef = useRef('');
@@ -26,7 +26,7 @@ const Login = () => {
 
     useEffect(() => {
         if (status === 200) {
-            history.replace("/students");
+            navigate("/students");
             console.log(status);
         }
 

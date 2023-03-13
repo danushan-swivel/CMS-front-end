@@ -7,13 +7,14 @@ const Navigation = () => {
     return (
         <Fragment>
             <Navbar bg="dark" veriant="dark" sticky="top">
-                <Navbar.Brand className='brand' href=''>Perera's Tuition Centre</Navbar.Brand>
+                <Navbar.Brand className='brand' href='/students'>Perera's Tuition Centre</Navbar.Brand>
                 <div className="nav-class">
-                    <NavLink className='nav-item' to='' activeClassName=''>Payment</NavLink>
-                    <NavLink className='nav-item' to='' nav-item activeClassName=''>Location</NavLink>
+                    <NavLink className='nav-item' to='/students' activeClassName=''>Students</NavLink>
+                    <NavLink className='nav-item' to='/payments' activeClassName=''>Payment</NavLink>
+                    <NavLink className='nav-item' to='/locations' nav-item activeClassName=''>Location</NavLink>
                 </div>
                 <div className="sign-out-class">
-                    <Nav.Link className="nav-link" href="#home">Signout</Nav.Link>
+                    <NavLink className="nav-link" href="#home">Signout</NavLink>
                 </div>
 
                 {/* <Nav className="nav-item">

@@ -49,6 +49,8 @@ export async function getAllStudentDetails() {
             'Content-Type': 'application/json'
         }
     });
+
+    console.log(response)
     if (response.ok) {
         return response.json();
     } else {
@@ -71,6 +73,45 @@ export async function createNewStudent(student) {
         }
     });
 
+    if (response.status === 500 || response.status === 200 || response.status === 400) {
+        return response.json();
+    } else {
+        return {
+            'statusCode': '6000'
+        };
+    }
+}
+
+
+export async function getStudentById(studentId) {
+    const accessToken = localStorage.getItem('access_token');
+    const response = await fetch(STUDENT_BASE_URL + studentUrl + '/' + studentId, {
+        method: 'GET',
+        headers: {
+            'access_token': accessToken,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    });
+    if (response.status === 500 || response.status === 200 || response.status === 400) {
+        return response.json();
+    } else {
+        return {
+            'statusCode': '6000'
+        };
+    }
+}
+
+export async function deleteStudentById(studentId) {
+    const accessToken = localStorage.getItem('access_token');
+    const response = await fetch(STUDENT_BASE_URL + studentUrl + '/' + studentId, {
+        method: 'DELETE',
+        headers: {
+            'access_token': accessToken,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    });
     if (response.status === 500 || response.status === 200 || response.status === 400) {
         return response.json();
     } else {

@@ -1,0 +1,43 @@
+import './PaymentsView.css';
+import React, { useState, useEffect, } from "react";
+import { getAllPayments } from '../lib/payment-api';
+import { useNavigate } from 'react-router-dom';
+import PaymentDetails from '../components/payment/PaymentDetails';
+
+const PaymentsView = () => {
+    const [payment, setPayment] = useState([]);
+    const [statusCode, setStatusCode] = useState(0);
+    const navigate = useNavigate();
+
+    async function loadPayment() {
+        const response = getAllPayments();
+        const responseData = await response;
+        console.log(responseData);
+        setStatusCode(responseData.statusCode);
+        if (responseData.statusCode === 2054) {
+            setPayment(responseData.data.payments);
+        }
+
+    }
+
+    function addPaymentHandler() {
+        navigate('/payment/add');
+    }
+
+    useEffect(() => {
+        loadPayment();
+    }, [statusCode]);
+
+    console.log(payment);
+    return (
+        <div className="details-view">
+            <div className='student-view-header'>
+                <h2 >Payment Details</h2>
+                <button onClick={addPaymentHandler}>Add</button>
+            </div>
+            <PaymentDetails paymentList={payment} />
+        </div>
+    );
+}
+
+export default PaymentsView;
