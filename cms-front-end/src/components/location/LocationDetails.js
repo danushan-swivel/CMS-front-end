@@ -5,7 +5,7 @@ import './LocationDetails.css';
 const LocationDetails = (props) => {
     const locationList = props.locationList.map(location => {
         return {
-            id: location.locationId,
+            id: location.tuitionClassId,
             address: location.address,
             district: location.district,
             province: location.province,
@@ -23,9 +23,8 @@ const LocationDetails = (props) => {
                     <Col md={2} className='list-view-col'>Address</Col>
                     <Col md={1} className='list-view-col'>District</Col>
                     <Col md={1} className='list-view-col'>Province</Col>
-                    <Col md={0.5} className='list-view-col student-btn-view'>View</Col>
-                    <Col md={0.5} className='list-view-col student-btn-view'>Update</Col>
-                    <Col md={0.5} className='list-view-col student-btn-view'>Delete</Col>
+                    <Col md={1} className='list-view-col student-btn-view'></Col>
+                    <Col md={1} className='list-view-col student-btn-view'></Col>
                 </Row>
 
                 {locationList.map((location) => (

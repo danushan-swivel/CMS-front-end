@@ -12,6 +12,7 @@ import PaymentsView from './pages/PaymentsView';
 import NewLocation from './pages/NewLocation';
 import PaymentReport from './pages/PaymentReportView';
 import PaymentReportView from './pages/PaymentReportView';
+import UpdateLocation from './pages/UpdateLocation';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/students/update/:studentId" element={<UpdateStudent />}></Route>
         <Route path="/locations" element={<LocationsView />}></Route>
         <Route path="/location/add" element={<NewLocation />}></Route>
+        <Route path="/location/update/:locationId" element={<UpdateLocation />}></Route >
         <Route path="/payments" element={<PaymentsView />}></Route>
         <Route path="/payment/report" element={<PaymentReportView />}></Route>
       </Routes>

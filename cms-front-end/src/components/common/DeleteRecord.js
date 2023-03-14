@@ -1,6 +1,8 @@
 
 import './DeleteRecord.css';
 import { deleteStudentById } from '../../lib/api';
+import { deleteTuitionClass } from '../../lib/location-api';
+import { deletePayment } from '../../lib/payment-api';
 import { useNavigate } from 'react-router-dom';
 
 const DeleteRecord = (props) => {
@@ -10,12 +12,38 @@ const DeleteRecord = (props) => {
 
     async function yesClicked() {
         console.log('Yes Clicked');
-        const response = await deleteStudentById(props.id);
-        const responsedata = await response;
-        if (responsedata.statusCoe === 2003) {
-            window.location = '/students';
+        if (props.service == 'student') {
+            const response = await deleteStudentById(props.id);
+            const responsedata = await response;
+            if (responsedata.statusCoe === 2003) {
+                window.location = '/students';
+            }
+            console.log(responsedata);
         }
-        console.log(responsedata);
+
+        if (props.service == 'location') {
+            console.log('Location Delete Function');
+            const response = await deleteTuitionClass(props.id);
+            const responsedata = await response;
+            if (responsedata.statusCoe === 2034) {
+                window.location = '/locations';
+                // TODO change the tuition class id in relavent places in student service
+                // TODO the auto refreshing not worling on delete payment and location. Check it
+            }
+            console.log(responsedata);
+        }
+
+        if (props.service == 'payment') {
+            console.log('Payment Delete Function');
+            const response = await deletePayment(props.id);
+            const responsedata = await response;
+            if (responsedata.statusCoe === 2052) {
+                window.location = '/payments';
+                // TODO change the payment id in relavent places in student service
+            }
+            console.log(responsedata);
+        }
+
     }
 
     function noClicked() {

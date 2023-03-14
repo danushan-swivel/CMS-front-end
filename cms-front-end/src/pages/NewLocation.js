@@ -10,6 +10,7 @@ const NewLocation = () => {
 
 
     const addLocationHandler = async (locationData) => {
+        console.log('Create Location Clicked');
         const response = createNewLocation(locationData);
         const responseData = await response;
         console.log(responseData.statusCode);
@@ -19,17 +20,11 @@ const NewLocation = () => {
             // TODO Check all errr status code and do right action
         }
     }
-
-    useEffect(() => {
-    }, []);
     return (
         <Fragment>
             <h2 className="add-student-title">Add New Location</h2>
             <Form className='add-student-form'>
-                <LocationForm addLocationHandler={addLocationHandler} />
-                {/* <Row className='add-student-form-row'>
-                <Button className='form-btn' size='md' variant="primary" onClick={addStudentHandler} >{`Add Student`}</Button>
-            </Row> */}
+                <LocationForm addLocationHandler={addLocationHandler} action='Create' />
             </Form>
         </Fragment>
     );

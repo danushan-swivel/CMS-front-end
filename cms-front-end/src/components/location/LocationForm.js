@@ -1,12 +1,35 @@
 import './LocationForm.css';
-import { Fragment, useRef } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Row, Col, Form, Button, } from "react-bootstrap";
 
 const LocationForm = (props) => {
+
+    let action = props.action;
+    if (props.action === 'Update') {
+        action = 'update';
+    }
+
+    const [name, setName] = useState('');
+    const [address, setAddress] = useState('');
+    const [district, setDistrict] = useState('');
+    const [province, setProvince] = useState('');
     const locationNameRef = useRef('');
     const districtRef = useRef('');
     const addressRef = useRef('');
     const provinceRef = useRef('');
+
+
+
+    async function loadUpdateLocation(data) {
+        setName(data.name);
+        setAddress(data.address);
+        setDistrict(data.district);
+        setProvince(data.province);
+    }
+
+    useEffect(() => {
+        loadUpdateLocation(props.state);
+    }, [action]);
 
 
 
@@ -24,6 +47,19 @@ const LocationForm = (props) => {
         props.addLocationHandler(location);
     }
 
+    const setNameValue = (e) => {
+        setName(e.target.value);
+    }
+    const setAddressValue = (e) => {
+        setAddress(e.target.value);
+    }
+    const setDistrictValue = (e) => {
+        setDistrict(e.target.value);
+    }
+    const setProvinceValue = (e) => {
+        setProvince(e.target.value);
+    }
+
 
 
     return (
@@ -31,22 +67,22 @@ const LocationForm = (props) => {
             <Form className="location-form" >
                 <Row className='add-student-form-row'>
                     <Col className='add-student-field-col' md={6} sm={12}>
-                        <Form.Control type='text' placeholder='Location Name' ref={locationNameRef} required />
+                        <Form.Control type='text' placeholder='Location Name' value={name} onChange={setNameValue} ref={locationNameRef} required />
                     </Col>
                     <Col className='add-student-field-col second-column' md={6} sm={12}>
-                        <Form.Control type='text' placeholder='Address' ref={addressRef} required />
+                        <Form.Control type='text' placeholder='Address' value={address} onChange={setAddressValue} ref={addressRef} required />
                     </Col>
                 </Row>
                 <Row className='add-student-form-row'>
                     <Col className='add-student-field-col' md={6} sm={12}>
-                        <Form.Control type='text' placeholder='District' ref={districtRef} required />
+                        <Form.Control type='text' placeholder='District' value={district} onChange={setDistrictValue} ref={districtRef} required />
                     </Col>
                     <Col className='add-student-field-col second-column' md={6} sm={12}>
-                        <Form.Control type='text' placeholder='Province' ref={provinceRef} required />
+                        <Form.Control type='text' placeholder='Province' value={province} onChange={setProvinceValue} ref={provinceRef} required />
                     </Col>
                 </Row>
                 <Row className='add-student-form-row'>
-                    <Button className='form-btn' size='md' onClick={submitFormHandler} variant="primary">Add Location</Button>
+                    <Button className='form-btn' size='md' onClick={submitFormHandler} variant="primary">{`${action} Location`}</Button>
                 </Row>
             </Form>
         </Fragment>

@@ -1,52 +1,30 @@
 import { Fragment, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import DeleteRecord from "../common/DeleteRecord";
 import './LocationRow.css';
 
 const LocationRow = ({ props }) => {
-    const [payClicked, setPayClicked] = useState(false);
     const [deleteClicked, setDeleteClicked] = useState(false);
     const navigate = useNavigate();
 
-    console.log(props.locationName);
+    console.log(props.id);
 
     function updateHandler() {
-        // navigate('/students/update/' + props.id, {
-        //     state: {
-        //         id: props.id,
-        //         firstName: props.firstName,
-        //         lastName: props.lastName,
-        //         gender: props.gender,
-        //         address: props.address,
-        //         age: props.age,
-        //         location: props.locationId,
-        //         studentStatus: props.studentStatus,
-        //         phoneNumber: props.phoneNumber,
-        //         joinedDate: props.joinedDate
-        //     }
-        // });
-    }
-
-    function viewHandler() {
-        // console.log('View buttion clicked' + props.id);
-        // navigate('/students/view/' + props.id, {
-        //     state: {
-        //         id: props.id,
-        //         firstName: props.firstName,
-        //         lastName: props.lastName,
-        //         gender: props.gender,
-        //         address: props.address,
-        //         age: props.age,
-        //         location: props.locationId,
-        //         studentStatus: props.studentStatus,
-        //         phoneNumber: props.phoneNumber,
-        //         joinedDate: props.joinedDate
-        //     }
-        // });
+        navigate('/location/update/' + props.id, {
+            state: {
+                id: props.id,
+                name: props.name,
+                district: props.district,
+                province: props.province,
+                address: props.address
+            }
+        });
     }
 
     function deleteHandler() {
-
+        console.log('Delete buttion clicked' + props.id);
+        (deleteClicked) ? setDeleteClicked(false) : setDeleteClicked(true);
     }
 
     const noClick = () => {
@@ -59,13 +37,11 @@ const LocationRow = ({ props }) => {
                 <Col className='list-view-col' md={2} >{props.address}</Col>
                 <Col className='list-view-col' md={1} >{props.district}</Col>
                 <Col className='list-view-col' md={1} >{props.province}</Col>
-                <Col className='list-view-col student-btn-view' md={0.5} ><button onClick={viewHandler}>View</button></Col>
-                <Col className='list-view-col student-btn-view' md={0.5} ><button onClick={updateHandler}>Update</button></Col>
-                <Col className='list-view-col student-btn-view' md={0.5} ><button onClick={deleteHandler}>Delete</button></Col>
+                <Col className='list-view-col student-btn-view' md={1} ><button onClick={updateHandler}>Update</button></Col>
+                <Col className='list-view-col student-btn-view' md={1} ><button onClick={deleteHandler}>Delete</button></Col>
             </Row >
 
-            {/* {(payClicked) ? <Row><StudentPayment id={props.id} /></Row> : null}
-            {(deleteClicked) ? <Row><DeleteRecord noClick={noClick} id={props.id} service={'student'} /></Row> : null} */}
+            {(deleteClicked) ? <Row><DeleteRecord noClick={noClick} id={props.id} service={'location'} /></Row> : null}
         </Fragment >
     );
 }

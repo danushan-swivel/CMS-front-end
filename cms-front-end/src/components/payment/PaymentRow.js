@@ -2,6 +2,7 @@ import './PaymentRow.css';
 import { Fragment, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import DeleteRecord from '../common/DeleteRecord';
 
 const PaymentRow = ({ props }) => {
     const [payClicked, setPayClicked] = useState(false);
@@ -28,7 +29,8 @@ const PaymentRow = ({ props }) => {
     }
 
     function deleteHandler() {
-
+        console.log('Delete buttion clicked' + props.id);
+        (deleteClicked) ? setDeleteClicked(false) : setDeleteClicked(true);
     }
 
     const noClick = () => {
@@ -48,8 +50,7 @@ const PaymentRow = ({ props }) => {
                 <Col className='list-view-col student-btn-view' md={0.5} ><button onClick={deleteHandler}>Delete</button></Col>
             </Row >
 
-            {/* {(payClicked) ? <Row><StudentPayment id={props.id} /></Row> : null}
-            {(deleteClicked) ? <Row><DeleteRecord noClick={noClick} id={props.id} service={'student'} /></Row> : null} */}
+            {(deleteClicked) ? <Row><DeleteRecord noClick={noClick} id={props.id} service={'payment'} /></Row> : null}
         </Fragment >
     );
 }

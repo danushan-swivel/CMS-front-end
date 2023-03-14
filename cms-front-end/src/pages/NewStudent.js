@@ -12,6 +12,7 @@ const NewStudent = () => {
     const [status, setStatus] = useState(0);
 
     const addStudentHandler = async (studentData) => {
+        console.log('Create Button Clicked');
         const response = createNewStudent(studentData);
         const responseData = await response;
 
