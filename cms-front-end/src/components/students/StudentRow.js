@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import DeleteRecord from "../common/DeleteRecord";
 import StudentPayment from "./StudentPayment";
+import { makePayment } from '../../lib/payment-api';
 import './StudentRow.css';
 const StudentRow = ({ props }) => {
     const [payClicked, setPayClicked] = useState(false);
@@ -23,7 +24,7 @@ const StudentRow = ({ props }) => {
                 gender: props.gender,
                 address: props.address,
                 age: props.age,
-                location: props.locationId,
+                location: props.locationName,
                 studentStatus: props.studentStatus,
                 phoneNumber: props.phoneNumber,
                 joinedDate: props.joinedDate
@@ -41,7 +42,7 @@ const StudentRow = ({ props }) => {
                 gender: props.gender,
                 address: props.address,
                 age: props.age,
-                location: props.locationId,
+                location: props.locationName,
                 studentStatus: props.studentStatus,
                 phoneNumber: props.phoneNumber,
                 joinedDate: props.joinedDate
@@ -57,6 +58,22 @@ const StudentRow = ({ props }) => {
         console.log('Pay buttion clicked' + props.id);
         (payClicked) ? setPayClicked(false) : setPayClicked(true);
     }
+
+    const paymentHadler = async (month, year) => {
+        const requestBody = {
+            'paymentMonth': {
+                'month': month,
+                'year': year
+            },
+            'studentId': props.id
+        }
+
+        const response = await makePayment(requestBody);
+        const responseData = await response;
+
+        console.log('pay clicked' + responseData.statusCode);
+
+    }
     return (
         <Fragment>
             <Row className=''>
@@ -67,16 +84,16 @@ const StudentRow = ({ props }) => {
                 <Col className='list-view-col' md={1} >{props.age}</Col>
                 <Col className='list-view-col' md={1} >{props.phoneNumber}</Col>
                 <Col className='list-view-col' md={1} >{props.studentStatus}</Col>
-                <Col className='list-view-col' md={1} >{props.locationId}</Col>
+                <Col className='list-view-col' md={1} >{props.locationName}</Col>
                 <Col className='list-view-col' md={1} >{props.joinedDate}</Col>
                 <Col className='list-view-col student-btn-view' md={0.5} ><button onClick={payHandler}>Pay</button></Col>
                 <Col className='list-view-col student-btn-view' md={0.5} ><button onClick={viewHandler}>View</button></Col>
                 <Col className='list-view-col student-btn-view' md={0.5} ><button onClick={updateHandler}>Update</button></Col>
                 <Col className='list-view-col student-btn-view' md={0.5} ><button onClick={deleteHandler}>Delete</button></Col>
-
             </Row >
 
-            {(payClicked) ? <Row><StudentPayment id={props.id} /></Row> : null}
+
+            {(payClicked) ? <Row><StudentPayment paymentHadler={paymentHadler} id={props.id} /></Row> : null}
             {(deleteClicked) ? <Row><DeleteRecord noClick={noClick} id={props.id} service={'student'} /></Row> : null}
         </Fragment >
     )

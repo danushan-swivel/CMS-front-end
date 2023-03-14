@@ -4,6 +4,16 @@ import StudentPayment from "./StudentPayment";
 
 import StudentRow from "./StudentRow";
 const StudentDetails = (props) => {
+    const tuitionClassList = props.tuitionClassList;
+    const tuitionMap = new Map(tuitionClassList.map(obj => {
+        return [obj.tuitionClassId, obj.locationName];
+    }));
+    // const tuitionClassMap = tuitionClassList.map((item) => {
+    //     this.key = item.tuitionClassId;
+    //     this.value = item.locationName;
+    //     return (this.item.tuitionClassId, this.item.locationName);
+    // });
+    console.log('map: ' + tuitionMap);
     const studentList = props.studentList.map(studentData => {
         return {
             id: studentData.studentId,
@@ -14,7 +24,7 @@ const StudentDetails = (props) => {
             age: studentData.age,
             phoneNumber: studentData.phoneNumber,
             studentStatus: studentData.studentStatus,
-            locationId: studentData.locationId,
+            locationName: tuitionMap.get(studentData.tuitionClassId),
             joinedDate: studentData.joinedDate,
             updatedAt: studentData.updatedAt,
             isDeleted: studentData.isDeleted

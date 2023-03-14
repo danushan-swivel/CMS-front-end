@@ -1,0 +1,46 @@
+.payment-report-form {
+    display: flex;
+    width: 35%;
+    column-gap: 50px;
+    margin: 0 auto;
+}
+
+.report-form-btn {
+    width: 200px;
+    background-color: rgb(28, 127, 32);
+}
+
+.payment-report-view {
+    padding: 20px;
+}
+
+.payment-report-view {
+    text-align: center;
+}
+
+.payment-report-col h3 {
+    background-color: rgb(196, 142, 142);
+    padding: 10px 0;
+}
+
+.payment-report-row {
+    margin: 0 auto;
+    column-gap: 50px;
+    padding: 20px 10px;
+
+}
+
+.payment-report-col h3 {
+    text-align: center;
+}
+
+.payment-report-field {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 5px 0px 10px 0px;
+}
+
+
+.payment-report-sub-field {
+    font-size: 18px;
+}

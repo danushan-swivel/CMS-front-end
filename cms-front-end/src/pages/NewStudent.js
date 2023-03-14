@@ -1,17 +1,15 @@
-import { Button, Form } from "bootstrap-4-react/lib/components";
-import { Container, Row } from "bootstrap-4-react/lib/components/layout";
+import { Form } from "bootstrap-4-react/lib/components";
 import { Fragment, useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import StudentForm from "../components/students/StudentForm";
 import './NewStudent.css';
 import { createNewStudent } from '../lib/api';
-import getAllLocationDetails from '../lib/location-api';
+import { getAllLocationDetails } from '../lib/location-api';
 
 const NewStudent = () => {
     const navigate = useNavigate();
     const [location, setLocation] = useState([]);
     const [status, setStatus] = useState(0);
-    // const { state } = useLocation();
 
     const addStudentHandler = async (studentData) => {
         const response = createNewStudent(studentData);

@@ -8,26 +8,10 @@ const PaymentRow = ({ props }) => {
     const [deleteClicked, setDeleteClicked] = useState(false);
     const navigate = useNavigate();
 
+    console.log('payment row');
+
     function updateHandler() {
         // navigate('/students/update/' + props.id, {
-        //     state: {
-        //         id: props.id,
-        //         firstName: props.firstName,
-        //         lastName: props.lastName,
-        //         gender: props.gender,
-        //         address: props.address,
-        //         age: props.age,
-        //         location: props.locationId,
-        //         studentStatus: props.studentStatus,
-        //         phoneNumber: props.phoneNumber,
-        //         joinedDate: props.joinedDate
-        //     }
-        // });
-    }
-
-    function viewHandler() {
-        // console.log('View buttion clicked' + props.id);
-        // navigate('/students/view/' + props.id, {
         //     state: {
         //         id: props.id,
         //         firstName: props.firstName,
@@ -53,13 +37,13 @@ const PaymentRow = ({ props }) => {
     return (
         <Fragment>
             <Row className='location-row'>
-                <Col md={1} className='list-view-col' >{props.firstName}</Col>
-                <Col md={1} className='list-view-col' >{props.lastName}</Col>
+                <Col md={2} className='list-view-col' >{props.firstName}</Col>
+                <Col md={2} className='list-view-col' >{props.lastName}</Col>
                 <Col md={1} className='list-view-col' >{props.grade}</Col>
-                <Col md={2} className='list-view-col'>{props.classLocation}</Col>
+                <Col md={1} className='list-view-col'>{props.classLocation}</Col>
                 <Col md={1} className='list-view-col'>{props.paymentMonth}</Col>
                 <Col md={1} className='list-view-col'>{props.paidDate}</Col>
-                <Col className='list-view-col student-btn-view' md={0.5} ><button onClick={viewHandler}>View</button></Col>
+                <Col md={1} className='list-view-col'>{props.updatedAt}</Col>
                 <Col className='list-view-col student-btn-view' md={0.5} ><button onClick={updateHandler}>Update</button></Col>
                 <Col className='list-view-col student-btn-view' md={0.5} ><button onClick={deleteHandler}>Delete</button></Col>
             </Row >

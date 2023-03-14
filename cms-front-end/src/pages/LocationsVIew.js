@@ -1,6 +1,6 @@
 import './StudentsView.css';
 import React, { useState, useEffect, } from "react";
-import getAllLocationDetails from '../lib/location-api';
+import { getAllLocationDetails } from '../lib/location-api';
 import { useNavigate } from 'react-router-dom';
 import LocationDetails from '../components/location/LocationDetails';
 const LocationsView = () => {

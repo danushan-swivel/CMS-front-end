@@ -1,10 +1,10 @@
-const BASE_URL = 'http://localhost:8105';
+const LOCATION_BASE_URL = 'http://localhost:8105';
 
-const getAllLocationUrl = "/api/v1/location/";
+const locationUrl = "/api/v1/tuition/";
 
-export default async function getAllLocationDetails() {
+export async function getAllLocationDetails() {
     const accessToken = localStorage.getItem('access_token');
-    const response = await fetch(BASE_URL + getAllLocationUrl, {
+    const response = await fetch(LOCATION_BASE_URL + locationUrl, {
         method: 'GET',
         headers: {
             'access_token': accessToken,
@@ -13,6 +13,29 @@ export default async function getAllLocationDetails() {
         }
     });
     if (response.ok) {
+        return response.json();
+    } else {
+        return {
+            'statusCode': '6000'
+        };
+    }
+}
+
+export async function createNewLocation(location) {
+    const accessToken = localStorage.getItem('access_token');
+    const response = await fetch(LOCATION_BASE_URL + locationUrl, {
+        method: 'POST',
+        body: JSON.stringify(location),
+        headers: {
+            'access_token': accessToken,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    });
+
+    console.log(response);
+
+    if (response.status === 500 || response.status === 200 || response.status === 400) {
         return response.json();
     } else {
         return {

@@ -9,6 +9,9 @@ import StudentPayment from './components/students/StudentPayment';
 import UpdateStudent from './pages/UpdateStudent';
 import LocationsView from './pages/LocationsVIew';
 import PaymentsView from './pages/PaymentsView';
+import NewLocation from './pages/NewLocation';
+import PaymentReport from './pages/PaymentReportView';
+import PaymentReportView from './pages/PaymentReportView';
 
 
 function App() {
@@ -22,7 +25,9 @@ function App() {
         <Route path="/students/view/:studentId" element={<StudentDetailView />}></Route>
         <Route path="/students/update/:studentId" element={<UpdateStudent />}></Route>
         <Route path="/locations" element={<LocationsView />}></Route>
+        <Route path="/location/add" element={<NewLocation />}></Route>
         <Route path="/payments" element={<PaymentsView />}></Route>
+        <Route path="/payment/report" element={<PaymentReportView />}></Route>
       </Routes>
     </Layout>
   );

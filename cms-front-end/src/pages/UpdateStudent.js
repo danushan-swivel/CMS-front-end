@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import StudentUpdateForm from "../components/students/StudentUpdateForm";
-import getAllLocationDetails from '../lib/location-api';
+import { getAllLocationDetails } from '../lib/location-api';
 
 const UpdateStudent = () => {
     const navigate = useNavigate();

@@ -72,6 +72,7 @@ export async function createNewStudent(student) {
             'Content-Type': 'application/json'
         }
     });
+    console.log(response);
 
     if (response.status === 500 || response.status === 200 || response.status === 400) {
         return response.json();

@@ -1,14 +1,16 @@
 import { Button } from "bootstrap-4-react/lib/components";
-import { Fragment, useRef } from "react";
+import { Fragment, useRef, useState } from "react";
 import { Row, Col, Form, } from "react-bootstrap";
 import './StudentForm.css';
 
 const StudentFormFields = (props) => {
+    const [tuitionCLassId, setTuitionClasssId] = useState('TuitionClass');
     const firstNameRef = useRef('');
     const lastNameRef = useRef('');
     const addressRef = useRef('');
     const ageRef = useRef(0);
     const genderRef = useRef('');
+    const gradeRef = useRef('');
     const phoneNumberRef = useRef('');
     const locationRef = useRef('');
 
@@ -24,13 +26,19 @@ const StudentFormFields = (props) => {
             'address': addressRef.current.value,
             'age': Number(ageRef.current.value),
             'gender': genderRef.current.value,
+            'grade': gradeRef.current.value,
             'phoneNumber': phoneNumberRef.current.value,
-            'locationId': locationRef.current.value
+            'tuitionClassId': tuitionCLassId
         }
 
         console.log(student);
 
         props.addStudentHandler(student);
+    }
+    const handleTuitionClassId = (e) => {
+        console.log('handler ' + e.target.value);
+        setTuitionClasssId(e.target.value);
+        console.log('tuition ' + tuitionCLassId);
     }
     return (
         <Fragment>
@@ -47,10 +55,13 @@ const StudentFormFields = (props) => {
                     <Form.Control as="textarea" placeholder='address' ref={addressRef} required />
                 </Row>
                 <Row className='add-student-form-row'>
-                    <Col className='add-student-field-col' md={4} sm={4}>
+                    <Col className='add-student-field-col' md={3} sm={6}>
                         <Form.Control type='text' placeholder='age' ref={ageRef} required />
                     </Col>
-                    <Col className='add-student-field-col second-column' md={8} sm={8}>
+                    <Col className='add-student-field-col second-column' md={3} sm={6}>
+                        <Form.Control type='text' placeholder='Grade' ref={gradeRef} required />
+                    </Col>
+                    <Col className='add-student-field-col second-column' md={6} sm={12}>
                         <Form.Control type='text' placeholder='phone number' ref={phoneNumberRef} required />
                     </Col>
                 </Row>
@@ -63,11 +74,11 @@ const StudentFormFields = (props) => {
                         </Form.Control>
                     </Col>
                     <Col className='add-student-field-col second-column' md={6} sm={12}>
-                        <Form.Control as={"Select"} required ref={locationRef}>
+                        <Form.Control as={"Select"} required value={tuitionCLassId} onChange={handleTuitionClassId} >
                             <option value=''>Tuition Location</option>
                             {/* TODO Write a API to fetch the all tuition class location name and id */}
                             {props.location.map((loc) => (
-                                <option value={loc.locationId}>{loc.district}</option>
+                                <option value={loc.tuitionClassId}>{loc.locationName}</option>
                             ))}
                         </Form.Control>
                     </Col>

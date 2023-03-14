@@ -12,7 +12,7 @@ const PaymentsView = () => {
     async function loadPayment() {
         const response = getAllPayments();
         const responseData = await response;
-        console.log(responseData);
+        // console.log(responseData);
         setStatusCode(responseData.statusCode);
         if (responseData.statusCode === 2054) {
             setPayment(responseData.data.payments);
@@ -21,7 +21,7 @@ const PaymentsView = () => {
     }
 
     function addPaymentHandler() {
-        navigate('/payment/add');
+        navigate('/payment/report');
     }
 
     useEffect(() => {
@@ -33,7 +33,7 @@ const PaymentsView = () => {
         <div className="details-view">
             <div className='student-view-header'>
                 <h2 >Payment Details</h2>
-                <button onClick={addPaymentHandler}>Add</button>
+                <button onClick={addPaymentHandler}>Reports</button>
             </div>
             <PaymentDetails paymentList={payment} />
         </div>
