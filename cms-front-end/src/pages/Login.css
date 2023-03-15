@@ -60,6 +60,13 @@
     .form-btn {
         width: 100%;
     }
+
+    .login-response-label {
+        text-align: center;
+        font-size: 18px;
+        color: red;
+        font-weight: bolder;
+    }
 }
 
 @media only screen and (max-width: 480px) {

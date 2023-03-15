@@ -3,38 +3,39 @@ import { Form } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import StudentUpdateForm from "../components/students/StudentUpdateForm";
 import { getAllLocationDetails } from '../lib/location-api';
+import { updateStudent } from '../lib/api';
 
 const UpdateStudent = () => {
     const navigate = useNavigate();
-    const [location, setLocation] = useState([]);
+    const [tuitionClass, setTuitionClass] = useState([]);
     const { state } = useLocation();
 
     const addStudentHandler = async (studentData) => {
-        // const response = createNewStudent(studentData);
-        // const responseData = await response;
+        const response = updateStudent(studentData);
+        const responseData = await response;
 
-        // if (responseData.statusCode === 2002) {
-        //     navigate('/students');
-        // } else if (responseData.statusCode === 2002) {
-        //     // TODO Check all errr status code and do right action
-        // }
+        if (responseData.statusCode === 2001) {
+            navigate('/students');
+        } else if (responseData.statusCode === 2002) {
+            // TODO Check all errr status code and do right action
+        }
     }
 
-    async function fetchLocationList() {
+    async function fetchTuitionClassList() {
         const response = getAllLocationDetails();
-        const locationData = await response;
-        const locationList = locationData.data.locations;
-        setLocation(locationList);
+        const tuitionClassData = await response;
+        const tuitionClassList = tuitionClassData.data.locations;
+        setTuitionClass(tuitionClassList);
     }
 
     useEffect(() => {
-        fetchLocationList();
+        fetchTuitionClassList();
     }, []);
     return (
         <Fragment>
             <h2 className="add-student-title">Update Student</h2>
             <Form className='add-student-form'>
-                <StudentUpdateForm addStudentHandler={addStudentHandler} location={location} state={state} action={'Update'} />
+                <StudentUpdateForm addStudentHandler={addStudentHandler} tuitionClass={tuitionClass} state={state} action={'Update'} />
             </Form>
             {/* <StudentForm addStudentHandler={addStudentHandler} props={state} action={'Update'} /> */}
         </Fragment>

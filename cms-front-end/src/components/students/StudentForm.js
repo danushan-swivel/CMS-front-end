@@ -1,93 +1,95 @@
 import { Button } from "bootstrap-4-react/lib/components";
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useState } from "react";
 import { Row, Col, Form, } from "react-bootstrap";
+import { useForm } from 'react-hook-form';
 import './StudentForm.css';
 
 const StudentFormFields = (props) => {
+    const { register, handleSubmit, formState: { errors }, } = useForm();
     const [tuitionCLassId, setTuitionClasssId] = useState('TuitionClass');
-    const firstNameRef = useRef('');
-    const lastNameRef = useRef('');
-    const addressRef = useRef('');
-    const ageRef = useRef(0);
-    const genderRef = useRef('');
-    const gradeRef = useRef('');
-    const phoneNumberRef = useRef('');
-    const locationRef = useRef('');
 
 
 
-    function submitFormHandler(event) {
-        event.preventDefault();
+    function submitFormHandler(inputs) {
         // TODO When we update the student, change the buttion name and data flow path based on props
 
         const student = {
-            'firstName': firstNameRef.current.value,
-            'lastName': lastNameRef.current.value,
-            'address': addressRef.current.value,
-            'age': Number(ageRef.current.value),
-            'gender': genderRef.current.value,
-            'grade': gradeRef.current.value,
-            'phoneNumber': phoneNumberRef.current.value,
-            'tuitionClassId': tuitionCLassId
+            'firstName': inputs.firstName,
+            'lastName': inputs.lastName,
+            'address': inputs.address,
+            'age': inputs.age,
+            'gender': inputs.gender,
+            'grade': inputs.grade,
+            'phoneNumber': inputs.phoneNumber,
+            'tuitionClassId': inputs.tuitionClass
         }
-
-        console.log(student);
-
-        props.addStudentHandler(student);
     }
     const handleTuitionClassId = (e) => {
         console.log('handler ' + e.target.value);
         setTuitionClasssId(e.target.value);
-        console.log('tuition ' + tuitionCLassId);
     }
     return (
         <Fragment>
             <Form className="student-form" >
                 <Row className='add-student-form-row'>
                     <Col className='add-student-field-col' md={6} sm={12}>
-                        <Form.Control type='text' placeholder='first name' ref={firstNameRef} required />
+                        <Form.Control type='text' placeholder='First name' {...register("firstName", { required: true, pattern: /^[a-zA-Z]+$/ })} />
+                        {errors.firstName && errors.firstName.type === "required" && <p> Required field</p>}
+                        {errors.firstName && errors.firstName.type === "pattern" && <p>Enter a valid name</p>}
+
                     </Col>
                     <Col className='add-student-field-col second-column' md={6} sm={12}>
-                        <Form.Control type='text' placeholder='last name' ref={lastNameRef} required />
+                        <Form.Control type='text' placeholder='Last name' {...register("lastName", { required: true, pattern: /^[a-zA-Z]+$/ })} />
+                        {errors.lastName && errors.lastName.type === "required" && <p> Required field</p>}
+                        {errors.lastName && errors.lastName.type === "pattern" && <p>Enter a valid name</p>}
                     </Col>
                 </Row>
                 <Row className='add-student-form-row'>
-                    <Form.Control as="textarea" placeholder='address' ref={addressRef} required />
+                    <Form.Control as="textarea" placeholder='Address' {...register("address", { required: true })} />
+                    {errors.address && errors.address.type === "required" && <p> Required field</p>}
                 </Row>
                 <Row className='add-student-form-row'>
                     <Col className='add-student-field-col' md={3} sm={6}>
-                        <Form.Control type='text' placeholder='age' ref={ageRef} required />
+                        <Form.Control type='text' placeholder='Age' {...register("age", { required: true, pattern: /^[+]?(\d*)$/, max: 100 })} />
+                        {errors.age && errors.age.type === "required" && <p> Required field</p>}
+                        {errors.age && errors.age.type === "pattern" && <p> Invalid age</p>}
+                        {errors.age && errors.age.type === "max" && <p> Invalid age</p>}
                     </Col>
                     <Col className='add-student-field-col second-column' md={3} sm={6}>
-                        <Form.Control type='text' placeholder='Grade' ref={gradeRef} required />
+                        <Form.Control type='text' placeholder='Grade' {...register("grade", { required: true })} />
+                        {errors.grade && errors.grade.type === "required" && <p> Required field</p>}
                     </Col>
                     <Col className='add-student-field-col second-column' md={6} sm={12}>
-                        <Form.Control type='text' placeholder='phone number' ref={phoneNumberRef} required />
+                        <Form.Control type='text' placeholder='Phone number Ex: 0771122558' {...register("phoneNumber", { required: true, pattern: /^[0-9]{10}$/ })} />
+                        {errors.phoneNumber && errors.phoneNumber.type === "required" && <p> Required field</p>}
+                        {errors.phoneNumber && errors.phoneNumber.type === "pattern" && <p>Enter a valid phone number</p>}
                     </Col>
                 </Row>
                 <Row className='add-student-form-row'>
                     <Col className='add-student-field-col' md={6} sm={12}>
-                        <Form.Control as={'select'} ref={genderRef} required>
+                        <Form.Control as={'select'} {...register("gender", { required: true })}>
                             <option value='' >Gender</option>
                             <option value='Male' >Male</option>
                             <option value='Female' >Female</option>
                         </Form.Control>
+                        {errors.gender && errors.gender.type === "required" && <p> Required field</p>}
                     </Col>
                     <Col className='add-student-field-col second-column' md={6} sm={12}>
-                        <Form.Control as={"Select"} required value={tuitionCLassId} onChange={handleTuitionClassId} >
+                        <Form.Control as={"Select"} required value={tuitionCLassId} {...register("tuitionClass", { required: true })} onChange={handleTuitionClassId} >
                             <option value=''>Tuition Location</option>
                             {/* TODO Write a API to fetch the all tuition class location name and id */}
                             {props.location.map((loc) => (
                                 <option value={loc.tuitionClassId}>{loc.locationName}</option>
                             ))}
                         </Form.Control>
+                        {errors.tuitionClass && errors.tuitionClass.type === "required" && <p> Required field</p>}
                     </Col>
                 </Row>
                 <Row className='add-student-form-row'>
-                    <Button className='form-btn' size='md' onClick={submitFormHandler} variant="primary">Add Student</Button>
+                    <Button className='form-btn' size='md' onClick={handleSubmit(submitFormHandler)} variant="primary">Add Student</Button>
                 </Row>
             </Form>
-        </Fragment>);
+        </Fragment >);
 }
 
 export default StudentFormFields;

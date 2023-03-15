@@ -20,7 +20,15 @@ const LocationsView = () => {
     }
 
     function addLocationHandler() {
-        navigate('/location/add');
+        navigate('/location/add', {
+            state: {
+                id: '',
+                name: '',
+                district: '',
+                province: '',
+                address: ''
+            }
+        });
     }
 
     useEffect(() => {

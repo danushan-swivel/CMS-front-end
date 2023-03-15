@@ -21,7 +21,7 @@ export async function adminLogin(encodedCredential) {
         }
     });
 
-    console.log(response);
+    // console.log(response);
 
     if (response.ok) {
         const body = await response.json();
@@ -113,6 +113,29 @@ export async function deleteStudentById(studentId) {
             'Content-Type': 'application/json'
         }
     });
+    if (response.status === 500 || response.status === 200 || response.status === 400) {
+        return response.json();
+    } else {
+        return {
+            'statusCode': '6000'
+        };
+    }
+}
+
+export async function updateStudent(student) {
+    console.log('Before save: ' + student);
+    const accessToken = localStorage.getItem('access_token');
+    const response = await fetch(STUDENT_BASE_URL + studentUrl, {
+        method: 'PUT',
+        body: JSON.stringify(student),
+        headers: {
+            'access_token': accessToken,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    });
+    console.log(response);
+
     if (response.status === 500 || response.status === 200 || response.status === 400) {
         return response.json();
     } else {
