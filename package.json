@@ -2,7 +2,7 @@
   "name": "cms-front-end",
   "version": "0.1.0",
   "engines": {
-    "node": "16.6.0-alpha.8af6728"
+    "node": "v16.6.0-alpha.8af6728"
   },
   "private": true,
   "dependencies": {
