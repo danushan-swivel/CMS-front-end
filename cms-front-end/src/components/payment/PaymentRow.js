@@ -3,15 +3,19 @@ import { Fragment, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import DeleteRecord from '../common/DeleteRecord';
+import StudentPayment from '../students/StudentPayment';
+import UpdatePayment from './UpdatePayment';
 
 const PaymentRow = ({ props }) => {
-    const [payClicked, setPayClicked] = useState(false);
+    const [updateClicked, setUpdateClicked] = useState(false);
     const [deleteClicked, setDeleteClicked] = useState(false);
     const navigate = useNavigate();
 
     console.log('payment row');
 
     function updateHandler() {
+        console.log('update clicked');
+        (updateClicked) ? setUpdateClicked(false) : setUpdateClicked(true);
         // navigate('/students/update/' + props.id, {
         //     state: {
         //         id: props.id,
@@ -51,6 +55,7 @@ const PaymentRow = ({ props }) => {
             </Row >
 
             {(deleteClicked) ? <Row><DeleteRecord noClick={noClick} id={props.id} service={'payment'} /></Row> : null}
+            {(updateClicked) ? <Row><UpdatePayment noClick={noClick} props={props} /></Row> : null}
         </Fragment >
     );
 }

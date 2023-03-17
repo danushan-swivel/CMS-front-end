@@ -4,14 +4,12 @@ import { getAllPaymentDetailsByStudentId } from '../../lib/payment-api';
 import { useLocation, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-const StudentDetailView = () => {
+const StudentDetailView = (props) => {
     const params = useParams();
     const studentId = params.studentId;
     const [paymentList, setPaymentList] = useState([]);
     const [status, setStatus] = useState(0);
     const { state } = useLocation();
-
-    console.log('state: ' + state.firstName);
 
     async function loadPaymentData() {
         const paymentResponse = getAllPaymentDetailsByStudentId(studentId);
@@ -31,6 +29,8 @@ const StudentDetailView = () => {
         // loadStudentData();
         loadPaymentData();
     }, [status]);
+
+    console.log('state: ' + state.firstName);
     return (
         <div className='student-detail-view-div'>
             <h2>Student Details</h2>

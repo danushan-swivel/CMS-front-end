@@ -23,6 +23,8 @@ const StudentFormFields = (props) => {
             'phoneNumber': inputs.phoneNumber,
             'tuitionClassId': inputs.tuitionClass
         }
+
+        props.addStudentHandler(student);
     }
     const handleTuitionClassId = (e) => {
         console.log('handler ' + e.target.value);

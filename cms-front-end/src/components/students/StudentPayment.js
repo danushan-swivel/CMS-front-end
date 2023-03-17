@@ -6,17 +6,24 @@ import { useForm } from 'react-hook-form';
 import './StudentPayment.css';
 
 const StudentPayment = (props) => {
-    const { register, handleSubmit, formState: { errors }, } = useForm();
-    const monthRef = useRef('');
-    const yearRef = useRef('');
+    const monthValue = props.paymentObject.month;
+    const yearValue = props.paymentObject.year;
 
+    console.log(monthValue);
+    console.log(yearValue);
+    const { register, handleSubmit, formState: { errors }, } = useForm({
+        defaultValues: {
+            month: monthValue,
+            year: yearValue
+        }
+    });
 
-    function makePayment() {
+    // const { register, handleSubmit, formState: { errors }, } = useForm();
 
-        const month = monthRef.current.value;
-        const year = yearRef.current.value;
+    function makePayment(data) {
 
-        console.log(year);
+        const month = data.month;
+        const year = data.year;
 
         props.paymentHadler(month, year);
 
@@ -50,7 +57,7 @@ const StudentPayment = (props) => {
                 </Row>
                 <Row>
                     <Col className='student-payment-col'>
-                        <Form.Control as={'select'} ref={yearRef} {...register("year", { required: true })}>
+                        <Form.Control as={'select'} {...register("year", { required: true })}>
                             <option value='' >Year</option>
                             <option value='2022' >2022</option>
                             <option value='2023' >2023</option>

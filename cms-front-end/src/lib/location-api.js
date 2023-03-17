@@ -1,4 +1,5 @@
-const LOCATION_BASE_URL = 'http://localhost:8105';
+// const LOCATION_BASE_URL = 'http://localhost:8105';
+const LOCATION_BASE_URL = '13.234.112.17:8080';
 
 const locationUrl = "/api/v1/tuition";
 

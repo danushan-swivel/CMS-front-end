@@ -32,6 +32,12 @@ const StudentRow = ({ props }) => {
         });
     }
 
+    const paymentObject = {
+        'month': '',
+        'year': '',
+        'paymentId': ''
+    }
+
     function viewHandler() {
         console.log('View buttion clicked' + props.id);
         navigate('/students/view/' + props.id, {
@@ -93,8 +99,8 @@ const StudentRow = ({ props }) => {
             </Row >
 
 
-            {(payClicked) ? <Row><StudentPayment paymentHadler={paymentHadler} id={props.id} /></Row> : null}
-            {(deleteClicked) ? <Row><DeleteRecord noClick={noClick} id={props.id} service={'student'} /></Row> : null}
+            {(payClicked) ? <Row><StudentPayment paymentHadler={paymentHadler} id={props.id} paymentObject={paymentObject} /></Row> : null}
+            {(deleteClicked) ? <Row><DeleteRecord noClick={noClick} id={props.id} /></Row> : null}
         </Fragment >
     )
 }

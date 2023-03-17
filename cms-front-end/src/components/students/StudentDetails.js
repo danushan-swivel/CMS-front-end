@@ -1,6 +1,5 @@
 import { Col, Container, Row } from "react-bootstrap";
 import './StudentDetails.css';
-import StudentPayment from "./StudentPayment";
 
 import StudentRow from "./StudentRow";
 const StudentDetails = (props) => {
@@ -8,11 +7,6 @@ const StudentDetails = (props) => {
     const tuitionMap = new Map(tuitionClassList.map(obj => {
         return [obj.tuitionClassId, obj.locationName];
     }));
-    // const tuitionClassMap = tuitionClassList.map((item) => {
-    //     this.key = item.tuitionClassId;
-    //     this.value = item.locationName;
-    //     return (this.item.tuitionClassId, this.item.locationName);
-    // });
     console.log('map: ' + tuitionMap);
     const studentList = props.studentList.map(studentData => {
         return {

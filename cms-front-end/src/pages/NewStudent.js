@@ -9,14 +9,13 @@ import { getAllLocationDetails } from '../lib/location-api';
 const NewStudent = () => {
     const navigate = useNavigate();
     const [location, setLocation] = useState([]);
-    const [status, setStatus] = useState(0);
 
     const addStudentHandler = async (studentData) => {
         console.log('Create Button Clicked');
         const response = createNewStudent(studentData);
         const responseData = await response;
 
-        if (responseData.statusCode === 2002) {
+        if (responseData.statusCode === 2000) {
             navigate('/students');
         } else if (responseData.statusCode === 2002) {
             // TODO Check all errr status code and do right action
@@ -41,9 +40,6 @@ const NewStudent = () => {
             <h2 className="add-student-title">Add New Student</h2>
             <Form className='add-student-form'>
                 <StudentForm addStudentHandler={addStudentHandler} location={location} action={'Create'} />
-                {/* <Row className='add-student-form-row'>
-                <Button className='form-btn' size='md' variant="primary" onClick={addStudentHandler} >{`Add Student`}</Button>
-            </Row> */}
             </Form>
         </Fragment>
     );

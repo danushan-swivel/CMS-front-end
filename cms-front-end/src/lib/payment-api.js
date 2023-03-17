@@ -1,4 +1,5 @@
-const BASE_URL = 'http://localhost:8101';
+// const BASE_URL = 'http://localhost:8101';
+const BASE_URL = '13.234.112.17:8080';
 
 const paymentUrl = "/api/v1/payment";
 const paymentUserReportUrl = "/api/v1/payment/user/report/";
