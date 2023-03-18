@@ -58,7 +58,7 @@ const Login = () => {
                         <Form.Control className='form-field' type='password' placeholder='password' {...register('password', { required: true })} />
                         {errors.password && <p>Password is required</p>}
                         <p>If you don't have account? <a href='google.com'>click here</a></p>
-                        <Button className='form-btn' onClick={handleSubmit(SubmitEvent)} size='md' variant="primary">Logging in</Button>
+                        <Button className='form-btn' onClick={handleSubmit(SubmitEvent)} size='md' variant="primary">Admin Logging in</Button>
                     </form>
                 </Col>
             </Row>
