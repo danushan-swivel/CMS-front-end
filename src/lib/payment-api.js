@@ -1,4 +1,4 @@
-const BASE_URL = 'https://cms-api-gateway.herokuapp.com';
+const BASE_URL = 'https://cms-api-gateway.herokuapp.com/payment';
 
 const paymentUrl = "/api/v1/payment";
 const paymentUserReportUrl = "/api/v1/payment/user/report/";
