@@ -1,5 +1,10 @@
 import Notification from "../components/common/Notification";
 
+const STUDENT_BASE_URL = 'https://cms-api-gateway.herokuapp.com';
+// const AUTH_BASE_URL = '13.234.112.17:8080/user';
+// const AUTH_BASE_URL = '13.234.112.17:8080/user';
+// const AUTH_BASE_URL = '//127.0.0.1:8080/user';
+// const AUTH_BASE_URL = 'http://13.234.112.17:8080/user';
 const AUTH_BASE_URL = 'https://cms-api-gateway.herokuapp.com/user';
 
 const loginUrl = '/api/v1/user/login';
@@ -36,7 +41,7 @@ export async function adminLogin(encodedCredential) {
 
 export async function getAllStudentDetails() {
     const accessToken = localStorage.getItem('access_token');
-    const response = await fetch(AUTH_BASE_URL + studentUrl, {
+    const response = await fetch(STUDENT_BASE_URL + studentUrl, {
         method: 'GET',
         headers: {
             'access_token': accessToken,
@@ -58,7 +63,7 @@ export async function getAllStudentDetails() {
 export async function createNewStudent(student) {
     console.log('Before save: ' + student);
     const accessToken = localStorage.getItem('access_token');
-    const response = await fetch(AUTH_BASE_URL + studentUrl, {
+    const response = await fetch(STUDENT_BASE_URL + studentUrl, {
         method: 'POST',
         body: JSON.stringify(student),
         headers: {
@@ -80,7 +85,7 @@ export async function createNewStudent(student) {
 
 export async function deleteStudentById(studentId) {
     const accessToken = localStorage.getItem('access_token');
-    const response = await fetch(AUTH_BASE_URL + studentUrl + '/' + studentId, {
+    const response = await fetch(STUDENT_BASE_URL + studentUrl + '/' + studentId, {
         method: 'DELETE',
         headers: {
             'access_token': accessToken,
@@ -100,7 +105,7 @@ export async function deleteStudentById(studentId) {
 export async function updateStudent(student) {
     console.log('Before save: ' + student);
     const accessToken = localStorage.getItem('access_token');
-    const response = await fetch(AUTH_BASE_URL + studentUrl, {
+    const response = await fetch(STUDENT_BASE_URL + studentUrl, {
         method: 'PUT',
         body: JSON.stringify(student),
         headers: {

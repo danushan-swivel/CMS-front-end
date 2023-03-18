@@ -1,5 +1,5 @@
 // const LOCATION_BASE_URL = 'http://localhost:8105';
-const LOCATION_BASE_URL = 'https://cms-api-gateway.herokuapp.com/user';
+const LOCATION_BASE_URL = 'https://cms-api-gateway.herokuapp.com';
 
 const locationUrl = "/api/v1/tuition";
 
