@@ -3,7 +3,7 @@ import Notification from "../components/common/Notification";
 const STUDENT_BASE_URL = '13.234.112.17:8080';
 // const AUTH_BASE_URL = '13.234.112.17:8080/user';
 // const AUTH_BASE_URL = '13.234.112.17:8080/user';
-const AUTH_BASE_URL = 'http://localhost:8080/user';
+const AUTH_BASE_URL = '13.234.112.17:8080/user';
 
 const loginUrl = '/api/v1/user/login';
 const studentUrl = '/api/v1/student';
