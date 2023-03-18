@@ -3,7 +3,7 @@ import Notification from "../components/common/Notification";
 const STUDENT_BASE_URL = '13.234.112.17:8080';
 // const AUTH_BASE_URL = '13.234.112.17:8080/user';
 // const AUTH_BASE_URL = '13.234.112.17:8080/user';
-// const AUTH_BASE_URL = '13.234.112.17:8080/user';
+// const AUTH_BASE_URL = '//127.0.0.1:8080/user';
 const AUTH_BASE_URL = 'http://13.234.112.17:8080/user';
 
 const loginUrl = '/api/v1/user/login';
@@ -22,6 +22,7 @@ export async function adminLogin(encodedCredential) {
         });
 
         if (response.ok) {
+
             const body = await response.json();
             const token = body.data.token;
             localStorage.setItem('access_token', token);
