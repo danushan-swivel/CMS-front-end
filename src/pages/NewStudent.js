@@ -17,8 +17,8 @@ const NewStudent = () => {
         const responseData = await response;
 
         if (responseData.statusCode === 2000) {
+            Notification(responseData.message, 'success');
             navigate('/students');
-            Notification(responseData.message, "success");
         } else {
             Notification(responseData.message, "error");
         }
