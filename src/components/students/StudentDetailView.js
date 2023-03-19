@@ -3,6 +3,7 @@ import './StudentDetailView.css';
 import { getAllPaymentDetailsByStudentId } from '../../lib/payment-api';
 import { useLocation, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import Notification from "../common/Notification";
 
 const StudentDetailView = (props) => {
     const params = useParams();

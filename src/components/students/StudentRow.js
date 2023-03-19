@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import DeleteRecord from "../common/DeleteRecord";
 import StudentPayment from "./StudentPayment";
 import { makePayment } from '../../lib/payment-api';
+import Notification from "../common/Notification";
 import './StudentRow.css';
 const StudentRow = ({ props }) => {
     const [payClicked, setPayClicked] = useState(false);
@@ -61,7 +62,6 @@ const StudentRow = ({ props }) => {
     }
 
     function payHandler() {
-        console.log('Pay buttion clicked' + props.id);
         (payClicked) ? setPayClicked(false) : setPayClicked(true);
     }
 

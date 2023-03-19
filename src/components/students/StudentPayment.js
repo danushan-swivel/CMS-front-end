@@ -18,8 +18,6 @@ const StudentPayment = (props) => {
         }
     });
 
-    // const { register, handleSubmit, formState: { errors }, } = useForm();
-
     function makePayment(data) {
 
         const month = data.month;

@@ -81,6 +81,26 @@ export async function makePayment(requestBody) {
     }
 }
 
+export async function updatePayment(requestBody) {
+    const accessToken = localStorage.getItem('access_token');
+    const response = await fetch(BASE_URL + paymentUrl, {
+        method: 'PUT',
+        body: JSON.stringify(requestBody),
+        headers: {
+            'access_token': accessToken,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    });
+    if (response.status === 500 || response.status === 200 || response.status === 400) {
+        return response.json();
+    } else {
+        return {
+            'statusCode': '6000'
+        };
+    }
+}
+
 export async function deletePayment(paymentId) {
     const accessToken = localStorage.getItem('access_token');
     const response = await fetch(BASE_URL + paymentUrl + '/' + paymentId, {
