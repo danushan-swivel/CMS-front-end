@@ -4,7 +4,9 @@ import "toastify-js/src/toastify.css";
 const Notification = (displayMessage, status) => {
     let color = "linear-gradient(to right, #00b09b, #96c93d)";
     if (status === 'success') {
-        color = '';
+        color = '#00FF00';
+    } else if (status === 'error') {
+        color = '#FF0000';
     }
     Toastify({
         text: displayMessage,

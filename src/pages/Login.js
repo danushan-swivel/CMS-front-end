@@ -6,6 +6,7 @@ import { encode as base64_encode } from 'base-64';
 import { useNavigate } from "react-router-dom";
 import { adminLogin } from '../lib/api';
 import { useForm } from 'react-hook-form';
+import Notification from '../components/common/Notification';
 
 const Login = () => {
 
@@ -28,10 +29,10 @@ const Login = () => {
     };
 
     if (status === 200) {
+        Notification("Logged in successflly", 'success');
         navigate("/students");
-    }
-    // console.log(status);
-    if (status === 401) {
+    } else {
+        Notification('Login is failed', 'error');
         setStatus(401);
     }
 

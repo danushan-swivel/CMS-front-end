@@ -5,6 +5,7 @@ import StudentForm from "../components/students/StudentForm";
 import './NewStudent.css';
 import { createNewStudent } from '../lib/api';
 import { getAllLocationDetails } from '../lib/location-api';
+import Notification from "../components/common/Notification";
 
 const NewStudent = () => {
     const navigate = useNavigate();
@@ -16,9 +17,10 @@ const NewStudent = () => {
         const responseData = await response;
 
         if (responseData.statusCode === 2000) {
+            Notification(responseData.message, 'success');
             navigate('/students');
-        } else if (responseData.statusCode === 2002) {
-            // TODO Check all errr status code and do right action
+        } else {
+            Notification(responseData.message, 'error');
         }
     }
 
