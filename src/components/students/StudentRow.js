@@ -76,8 +76,12 @@ const StudentRow = ({ props }) => {
 
         const response = await makePayment(requestBody);
         const responseData = await response;
-
-        console.log('pay clicked' + responseData.statusCode);
+        if (responseData.statusCode === 2050) {
+            Notification(responseData.message, "success");
+            setPayClicked(false);
+        } else {
+            Notification(responseData.message, "error");
+        }
 
     }
     return (

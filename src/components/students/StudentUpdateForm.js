@@ -1,5 +1,5 @@
 import { Button } from "bootstrap-4-react/lib/components";
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useState } from "react";
 import { Row, Col, Form, } from "react-bootstrap";
 import { useForm } from 'react-hook-form';
 import './StudentUpdateForm.css';
@@ -28,35 +28,8 @@ const StudentUpdateForm = (props) => {
         }
     });
 
-    const setFirstName = e => {
-        setFirstNameValue(e.target.value);
-    }
-    const setLastName = e => {
-        setLastNameValue(e.target.value);
-    }
-    const setAge = e => {
-        setAgeValue(e.target.value);
-    }
-    const setAddress = e => {
-        setAddressValue(e.target.value);
-    }
-    const setLocation = e => {
-        setTuitionClassValue(e.target.value);
-    }
-    const setPhoneNumber = e => {
-        setPhoneNumberValue(e.target.value);
-    }
-    const setGender = e => {
-        setGenderValue(e.target.value);
-    }
-
-    const setStudentStatus = e => {
-        setStudentStatusValue(e.target.value);
-    }
 
     function submitFormHandler(data) {
-        // TODO When we update the student, change the buttion name and data flow path based on props
-
         const student = {
             'studentId': props.state.id,
             'firstName': data.firstName,

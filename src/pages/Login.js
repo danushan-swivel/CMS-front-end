@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container } from 'bootstrap-4-react';
 import './Login.css';
 import { Button, Col, Form, Row } from 'react-bootstrap';
@@ -13,9 +13,6 @@ const Login = () => {
     const navigate = useNavigate();
     const [status, setStatus] = useState(0);
 
-    // const nameRef = useRef('');
-    // const passRef = useRef('');
-
     const SubmitEvent = async (inputs) => {
         const username = inputs.username;
         const password = inputs.password;
@@ -29,23 +26,12 @@ const Login = () => {
 
     if (status === 200) {
         navigate("/students");
+        Notification("Logged in successfully", "success");
     }
-    // console.log(status);
     if (status === 401) {
+        Notification("Try again later", "error");
         setStatus(401);
     }
-
-    // useEffect(() => {
-    //     if (status === 200) {
-    //         navigate("/students");
-    //         console.log(status);
-    //     }
-
-    //     if (status === 401) {
-    //         <p>Invalid credential</p>
-    //         console.log(status);
-    //     }
-    // }, [status]);
     return (
         <Container className="container">
             {status === 401 && <p className='login-response-label'>Invalid Credential</p>}

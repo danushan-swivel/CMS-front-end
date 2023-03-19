@@ -7,7 +7,6 @@ import './PaymentReportView.css';
 const PaymentReportView = () => {
     const [paidUserData, setPaidUserData] = useState([]);
     const [unpaidUserData, setUnpaidUserData] = useState([]);
-    const [status, setStatus] = useState(0);
     const monthRef = useRef('');
     const yearRef = useRef('');
 
@@ -40,6 +39,8 @@ const PaymentReportView = () => {
                 return resourse;
             });
             setUnpaidUserData(unpaidUserList);
+        } else {
+            Notification(responseData.message, "error");
         }
     }
 

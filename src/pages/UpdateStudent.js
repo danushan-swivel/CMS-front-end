@@ -15,9 +15,11 @@ const UpdateStudent = () => {
         const responseData = await response;
 
         if (responseData.statusCode === 2001) {
+            Notification(responseData.message, "success");
             navigate('/students');
-        } else if (responseData.statusCode === 2002) {
+        } else {
             // TODO Check all errr status code and do right action
+            Notification(responseData.message, "error");
         }
     }
 

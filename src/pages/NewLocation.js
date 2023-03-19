@@ -17,8 +17,8 @@ const NewLocation = () => {
         console.log(responseData.statusCode);
         if (responseData.statusCode === 2030) {
             navigate('/locations');
-        } else if (responseData.statusCode === 2002) {
-            // TODO Check all errr status code and do right action
+        } else {
+            Notification(responseData.message, "error");
         }
     }
     return (

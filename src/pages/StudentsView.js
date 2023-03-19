@@ -19,6 +19,8 @@ const StudentsView = () => {
         if (responseData.statusCode === 2002) {
             setStudent(responseData.data.students);
             setTuitionClass(locationResponseData.data.locations);
+        } else {
+            Notification(responseData.message, "error");
         }
 
     }

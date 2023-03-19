@@ -16,6 +16,8 @@ const PaymentsView = () => {
         setStatusCode(responseData.statusCode);
         if (responseData.statusCode === 2054) {
             setPayment(responseData.data.payments);
+        } else {
+            Notification(responseData.message, "error");
         }
 
     }

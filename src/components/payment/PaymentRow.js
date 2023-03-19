@@ -1,35 +1,18 @@
 import './PaymentRow.css';
 import { Fragment, useState } from "react";
 import { Row, Col } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import DeleteRecord from '../common/DeleteRecord';
-import StudentPayment from '../students/StudentPayment';
 import UpdatePayment from './UpdatePayment';
 
 const PaymentRow = ({ props }) => {
     const [updateClicked, setUpdateClicked] = useState(false);
     const [deleteClicked, setDeleteClicked] = useState(false);
-    const navigate = useNavigate();
 
     console.log('payment row');
 
     function updateHandler() {
         console.log('update clicked');
         (updateClicked) ? setUpdateClicked(false) : setUpdateClicked(true);
-        // navigate('/students/update/' + props.id, {
-        //     state: {
-        //         id: props.id,
-        //         firstName: props.firstName,
-        //         lastName: props.lastName,
-        //         gender: props.gender,
-        //         address: props.address,
-        //         age: props.age,
-        //         location: props.locationId,
-        //         studentStatus: props.studentStatus,
-        //         phoneNumber: props.phoneNumber,
-        //         joinedDate: props.joinedDate
-        //     }
-        // });
     }
 
     function deleteHandler() {

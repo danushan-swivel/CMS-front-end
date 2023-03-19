@@ -18,15 +18,13 @@ const StudentDetailView = (props) => {
             // TODO Check status code and show appropriate messages
             setPaymentList(paymentData.data);
             setStatus(paymentData.statusCode);
-            paymentData.data.payments.map((payment) => {
-                console.log('payment data: ' + payment.paymentId);
-            })
 
+        } else {
+            Notification(paymentData.message, "error");
         }
 
     }
     useEffect(() => {
-        // loadStudentData();
         loadPaymentData();
     }, [status]);
 
@@ -58,7 +56,7 @@ const StudentDetailView = (props) => {
                     <Col className='student-payment-detail-col-title'>Paid Date: </Col>
                 </Row>
                 {
-                    (paymentList.length != 0) ? paymentList.payments.map((payment) => (
+                    (paymentList.length !== 0) ? paymentList.payments.map((payment) => (
                         <Row>
                             <Col className='student-payment-detail-col'>{payment.paymentMonth}</Col>
                             <Col className='student-payment-detail-col'>{payment.paidDate}</Col>
