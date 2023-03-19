@@ -25,7 +25,7 @@ const StudentRow = ({ props }) => {
                 gender: props.gender,
                 address: props.address,
                 age: props.age,
-                location: props.locationName,
+                location: props.tuitionClassId,
                 studentStatus: props.studentStatus,
                 phoneNumber: props.phoneNumber,
                 joinedDate: props.joinedDate
