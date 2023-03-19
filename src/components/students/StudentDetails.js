@@ -18,7 +18,7 @@ const StudentDetails = (props) => {
             age: studentData.age,
             phoneNumber: studentData.phoneNumber,
             studentStatus: studentData.studentStatus,
-            tuitionClassId: studentData.tuitionClassId,
+            locationName: tuitionMap.get(studentData.tuitionClassId),
             joinedDate: studentData.joinedDate,
             updatedAt: studentData.updatedAt,
             isDeleted: studentData.isDeleted
