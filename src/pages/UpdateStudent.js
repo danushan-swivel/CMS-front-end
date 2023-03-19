@@ -19,7 +19,6 @@ const UpdateStudent = () => {
             Notification(responseData.message, 'success');
             navigate('/students');
         } else {
-            // TODO Check all errr status code and do right action
             Notification(responseData.message, "error");
         }
     }
