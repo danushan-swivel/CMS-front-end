@@ -21,8 +21,6 @@ const UpdateStudent = () => {
         } else {
             // TODO Check all errr status code and do right action
             Notification(responseData.message, "error");
-        } else if (responseData.statusCode === 2002) {
-            Notification(responseData.message, 'error');
         }
     }
 
