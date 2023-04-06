@@ -1,7 +1,7 @@
 const BASE_URL = 'https://cms-api-gateway.herokuapp.com/payment';
 
 const paymentUrl = "/api/v1/payment";
-const paymentUserReportUrl = "/api/v1/payment/user/report/";
+const paymentUserReportUrl = "/api/v1/payment/student/report/";
 const getPaymentByStudentId = "/api/v1/payment/student/";
 
 export async function getAllPaymentDetailsByStudentId(studentId) {
