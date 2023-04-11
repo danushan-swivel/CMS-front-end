@@ -1,6 +1,6 @@
 import Notification from "../components/common/Notification";
 
-const STUDENT_BASE_URL = 'http://3.110.133.152.205:8080/student';
+const STUDENT_BASE_URL = 'http://3.110.133.152:8080/student';
 const AUTH_BASE_URL = 'http://3.110.133.152:8080/user';
 
 const loginUrl = '/api/v1/user/login';

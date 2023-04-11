@@ -27,7 +27,7 @@ const UpdatePayment = ({ props }) => {
 
         const response = await updatePayment(requestBody);
         const responseData = await response;
-        if (responseData.statusCode === 2051) {
+        if (responseData.statusCode === 200) {
             Notification(responseData.message, "success");
         } else {
             Notification(responseData.message, "error");

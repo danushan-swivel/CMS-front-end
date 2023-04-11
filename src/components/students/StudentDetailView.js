@@ -15,7 +15,7 @@ const StudentDetailView = (props) => {
     async function loadPaymentData() {
         const paymentResponse = getAllPaymentDetailsByStudentId(studentId);
         const paymentData = await paymentResponse;
-        if (paymentData.statusCode === 2054) {
+        if (paymentData.statusCode === 200) {
             // TODO Check status code and show appropriate messages
             setPaymentList(paymentData.data);
             setStatus(paymentData.statusCode);

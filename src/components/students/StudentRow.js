@@ -76,7 +76,7 @@ const StudentRow = ({ props }) => {
 
         const response = await makePayment(requestBody);
         const responseData = await response;
-        if (responseData.statusCode === 2050) {
+        if (responseData.statusCode === 200 || responseData.statusCode === 201) {
             Notification(responseData.message, "success");
             setPayClicked(false);
         } else {
