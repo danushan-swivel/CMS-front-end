@@ -13,7 +13,7 @@ const LocationsView = () => {
         const responseData = await response;
         console.log(responseData);
         setStatusCode(responseData.statusCode);
-        if (responseData.statusCode === 2031) {
+        if (responseData.statusCode === 200) {
             setLocation(responseData.data.locations);
         }
 

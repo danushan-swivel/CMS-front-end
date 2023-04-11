@@ -1,20 +1,30 @@
 import Notification from "../components/common/Notification";
 
-const STUDENT_BASE_URL = 'http://15.206.146.43:8080/student';
-const AUTH_BASE_URL = 'http://15.206.146.43:8080/user';
+const STUDENT_BASE_URL = 'http://13.126.215.205:8080/student';
+const AUTH_BASE_URL = 'http://13.126.215.205:8080/user';
 
 const loginUrl = '/api/v1/user/login';
 const studentUrl = '/api/v1/student';
 
-export async function adminLogin(encodedCredential) {
+export async function adminLogin(username, password) {
     try {
+        const details = {
+            'username': username,
+            'password': password
+        }
+        var formBody = [];
+        for (var property in details) {
+            var encodedKey = encodeURIComponent(property);
+            var encodedValue = encodeURIComponent(details[property]);
+            formBody.push(encodedKey + "=" + encodedValue);
+        }
+
+        formBody = formBody.join("&");
         const response = await fetch(AUTH_BASE_URL + loginUrl, {
             method: 'POST',
-            body: JSON.stringify({}),
+            body: formBody,
             headers: {
-                'Authorization': 'Basic ' + encodedCredential,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'
             }
         });
 

@@ -17,9 +17,7 @@ const Login = () => {
     const SubmitEvent = async (inputs) => {
         const username = inputs.username;
         const password = inputs.password;
-        const encodedCredential = `${username}:${password}`;
-        const encodeString = base64_encode(encodedCredential);
-        const response = await adminLogin(encodeString);
+        const response = await adminLogin(username, password);
         const responseData = await response;
         setStatus(responseData['status']);
 

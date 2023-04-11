@@ -16,7 +16,7 @@ const NewStudent = () => {
         const response = createNewStudent(studentData);
         const responseData = await response;
 
-        if (responseData.statusCode === 2000) {
+        if (responseData.statusCode === 201) {
             Notification(responseData.message, 'success');
             navigate('/students');
         } else {

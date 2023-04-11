@@ -15,7 +15,7 @@ const NewLocation = () => {
         const response = createNewLocation(locationData);
         const responseData = await response;
         console.log(responseData.statusCode);
-        if (responseData.statusCode === 2030) {
+        if (responseData.statusCode === 201) {
             navigate('/locations');
         } else {
             Notification(responseData.message, "error");

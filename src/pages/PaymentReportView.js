@@ -16,7 +16,7 @@ const PaymentReportView = () => {
         const response = await getpaymentUserReport(month, year);
         const responseData = await response;
 
-        if (responseData.statusCode === 2056) {
+        if (responseData.statusCode === 200) {
             setPaidUserData([]);
             setUnpaidUserData([]);
             const paidUserList = responseData.data.paidUsers.map(paidUser => {

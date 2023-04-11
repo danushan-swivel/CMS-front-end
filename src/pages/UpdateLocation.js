@@ -23,7 +23,7 @@ const UpdateLocation = () => {
         const response = updateLocation(updateRequestDto);
         const responseData = await response;
         console.log(responseData.statusCode);
-        if (responseData.statusCode === 2033) {
+        if (responseData.statusCode === 200) {
             Notification(responseData.message, "success");
             navigate('/locations');
         } else {

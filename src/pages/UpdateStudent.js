@@ -14,7 +14,7 @@ const UpdateStudent = () => {
         const response = updateStudent(studentData);
         const responseData = await response;
 
-        if (responseData.statusCode === 2001) {
+        if (responseData.statusCode === 200) {
             Notification(responseData.message, "success");
             Notification(responseData.message, 'success');
             navigate('/students');

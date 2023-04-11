@@ -16,7 +16,7 @@ const StudentsView = () => {
         const responseData = await response;
         const locationResponseData = await locationResponse;
         setStatusCode(responseData.statusCode);
-        if (responseData.statusCode === 2002) {
+        if (responseData.statusCode === 200) {
             setStudent(responseData.data.students);
             setTuitionClass(locationResponseData.data.locations);
         } else {
