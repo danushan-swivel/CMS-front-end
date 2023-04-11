@@ -1,5 +1,5 @@
 // const LOCATION_BASE_URL = 'http://localhost:8105';
-const LOCATION_BASE_URL = 'http://13.126.215.205:8080/tuition';
+const LOCATION_BASE_URL = 'http://3.110.133.152:8080/tuition';
 const locationUrl = "/api/v1/tuition";
 export async function getAllLocationDetails() {
     const accessToken = localStorage.getItem('access_token');

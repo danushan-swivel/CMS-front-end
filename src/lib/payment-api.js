@@ -1,4 +1,4 @@
-const BASE_URL = 'http://13.126.215.205:8080/payment';
+const BASE_URL = 'http://3.110.133.152:8080/payment';
 
 const paymentUrl = "/api/v1/payment";
 const paymentUserReportUrl = "/api/v1/payment/student/report/";
