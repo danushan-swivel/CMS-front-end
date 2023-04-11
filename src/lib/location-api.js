@@ -1,5 +1,5 @@
 // const LOCATION_BASE_URL = 'http://localhost:8105';
-const LOCATION_BASE_URL = 'https://cms-api-gateway.herokuapp.com/tuition';
+const LOCATION_BASE_URL = 'http://15.206.146.43:8080/tuition';
 const locationUrl = "/api/v1/tuition";
 export async function getAllLocationDetails() {
     const accessToken = localStorage.getItem('access_token');

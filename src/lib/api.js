@@ -1,7 +1,7 @@
 import Notification from "../components/common/Notification";
 
-const STUDENT_BASE_URL = 'https://cms-api-gateway.herokuapp.com/student';
-const AUTH_BASE_URL = 'https://cms-api-gateway.herokuapp.com/user';
+const STUDENT_BASE_URL = 'http://15.206.146.43:8080/student';
+const AUTH_BASE_URL = 'http://15.206.146.43:8080/user';
 
 const loginUrl = '/api/v1/user/login';
 const studentUrl = '/api/v1/student';
