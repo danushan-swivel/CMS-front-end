@@ -19,9 +19,11 @@ function App() {
   return (
     <Layout>
       <Routes>
-        <Route path="/login" element={<Login />}></Route>
+        <Route path="/login" element={
+          <Login />
+        }></Route>
         <Route path="/" element={<Navigate to='/login' />}> </Route>
-        <Route path="/students" element={<StudentsView />}></Route>
+        <Route path="/students" element={<Login />}></Route>
         <Route path="/student/add" element={<NewStudent />}></Route>
         <Route path="/students/view/:studentId" element={<StudentDetailView />}></Route>
         <Route path="/students/update/:studentId" element={<UpdateStudent />}></Route>

@@ -2,8 +2,10 @@ import Notification from "../components/common/Notification";
 
 const STUDENT_BASE_URL = 'http://3.110.133.152:8080/student';
 const AUTH_BASE_URL = 'http://3.110.133.152:8080/user';
+const NEW_API_URL = 'http://43.205.217.251:8080/user';
 
 const loginUrl = '/api/v1/user/login';
+const testUrl = '/api/v1/user/test-post';
 const studentUrl = '/api/v1/student';
 
 export async function adminLogin(username, password) {
@@ -20,24 +22,22 @@ export async function adminLogin(username, password) {
         }
 
         formBody = formBody.join("&");
-        const response = await fetch(AUTH_BASE_URL + loginUrl, {
-            method: 'POST',
-            body: formBody,
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
+        // const response = await fetch(AUTH_BASE_URL + loginUrl, {
+        //     method: 'POST',
+        //     body: formBody,
+        //     headers: {
+        //         'Content-Type': 'application/x-www-form-urlencoded'
+        //     }
+        // });
+
+        const response = await fetch(NEW_API_URL + testUrl, {
+            method: 'POST'
         });
 
         if (response.ok) {
 
             const body = await response.json();
-            const token = body.data.token;
-            localStorage.setItem('access_token', token);
-            Notification(body.message);
-            return {
-                'access-token': token,
-                'status': 200
-            }
+            console.log(body);
         }
     } catch (e) {
         Notification("Couldn't login now. Please try again later");

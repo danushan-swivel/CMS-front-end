@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { adminLogin } from '../lib/api';
 import { useForm } from 'react-hook-form';
 import Notification from '../components/common/Notification';
-
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors }, } = useForm();
